@@ -2,11 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\frontend",
-    "\\frontend\\src",
-    "\\frontend\\src\\components",
-    "\\models",
     "\\routes"
   ],
-  "SelectedNode": "\\frontend\\src\\components\\Rates.jsx",
+  "SelectedNode": "\\server.js",
   "PreviewInSolutionExplorer": false
 }

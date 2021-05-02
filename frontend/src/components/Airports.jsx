@@ -8,19 +8,15 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 
 function Airports(props) {
 
+    const { rowCallback, ...rest } = props;
+
     const [airports, setAirports] = useState([{
+        _id: "",
         airportCode: "",
         airportName: "",
         country: "",
         area: ""
     }]);
-
-    const [selectedValue, setSelectedValue] = useState({
-        airportCode: "",
-        airportName: "",
-        country: "",
-        area: ""
-    });
 
     useEffect(() => {
         fetch("/airports").then(res => {
@@ -33,49 +29,49 @@ function Airports(props) {
     const records = airports;
     const columns = [{
         dataField: 'airportCode',
-        text: 'Airport code',
-        sort: true
+        text: 'Code',
+        sort: true,
+        headerStyle: { width: "11%" },
+        style: { width: "11%" }
     }, {
         dataField: 'airportName',
         text: 'Name',
-        style: { whiteSpace: "nowrap", width: "50%" }
+        headerStyle: { width: "58%" },
+        style: { width: "58%" }
     }, {
         dataField: 'country',
-        text: 'Country',
-        sort: true
+        text: 'Cnt',
+        sort: true,
+        headerStyle: { width: "10%" },
+        style: { width: "10%" }
     }, {
         dataField: 'area',
-        text: 'Area'
+        text: 'Area',
+        headerStyle: { width: "22%" },
+        style: { width: "22%" }
     }];
 
     const { SearchBar } = Search;
-
-    //update and use the current selectedValue to pass the row up the component tree
-    useEffect(() => {
-        props.useRow(selectedValue.airportCode);
-    }, [selectedValue]);
 
     const selectRow = {
         mode: 'radio',
         clickToSelect: true,
         style: { backgroundColor: '#c8e6c9' },
         onSelect: function (row) {
-            setSelectedValue(row);
+            let selectedRow = row.airportCode;
+            return rowCallback(selectedRow);
         }
     }
 
     return (
-        <Container>
-            <ToolkitProvider
-                key="_id" keyField='_id' data={records} columns={columns}
-                search
-            >
+        <Container {...rest}>
+            <ToolkitProvider keyField="_id" data={records} columns={columns} search>
                 {
-                    props => (
+                    rest => (
                         <div>
                             <h3>Input something at below input field:</h3>
-                            <SearchBar {...props.searchProps} />
-                            <BootstrapTable {...props.baseProps} pagination={paginationFactory()} selectRow={selectRow} striped hover condensed bordered={false} />
+                            <SearchBar {...rest.searchProps} />
+                            <BootstrapTable {...rest.baseProps} pagination={paginationFactory()} selectRow={selectRow} striped hover condensed bordered={false} />
                         </div>
                     )
                 }

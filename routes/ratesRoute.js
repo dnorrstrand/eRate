@@ -4,44 +4,40 @@ const Rate = require("../models/rateModel");
 
 
 router.route("/createRate").post((req, res) => {
-    const { rateCode, kgLb } = req.body;
-    {/*, contact, sellBuy, remarksInt, remarksExt, salesRegion, currency, forCarrier, serviceLevel, agent, dealCode, shipper,
-        originZone, origin, destZone, dest, priceTemplate, fromDate, untilDate, priceClass, prepaidCollect, uldType, flightGroup, weekday, transitAirport,
-        transitCarrier, premium, reference, shcAddon, allotPrice, minAmount, n, q45, q100, q300, q500, q1000, q3000, allIn, expired, revisedDate */}
-
-    const newRate = new Rate({
-        rateCode,
-        kgLb
-    })
-    {/* contact,
-        sellBuy,
-        remarksInt,
-        remarksExt,
-        salesRegion,
-        currency,
+    const {
         forCarrier,
-        serviceLevel,
-        agent,
-        dealCode,
-        shipper,
-        originZone,
+        currency,
+        contact,
+        revisedDate,
+        expired,
         origin,
-        destZone,
+        originZone,
         dest,
-        priceTemplate,
-        fromDate,
-        untilDate,
-        priceClass,
-        prepaidCollect,
-        uldType,
-        flightGroup,
-        weekday,
+        destZone,
         transitAirport,
         transitCarrier,
-        premium,
+        fromDate,
+        untilDate,
+        rateCode,
+        kgLb,
+        sellBuy,
+        prepaidCollect,
+        salesRegion,
+        dealCode,
         reference,
+        priceClass,
+        serviceLevel,
+        flightGroup,
+        uldType,
         shcAddon,
+        priceTemplate,
         allotPrice,
+        weekday,
+        premium,
+        shipper,
+        agent,
+        remarksInt,
+        remarksExt,
         minAmount,
         n,
         q45,
@@ -50,17 +46,61 @@ router.route("/createRate").post((req, res) => {
         q500,
         q1000,
         q3000,
-        allIn,
+        allIn
+    } = req.body;
+
+    const newRate = new Rate({
+        forCarrier,
+        currency,
+        contact,
+        revisedDate,
         expired,
-        revisedDate */}
+        origin,
+        originZone,
+        dest,
+        destZone,
+        transitAirport,
+        transitCarrier,
+        fromDate,
+        untilDate,
+        rateCode,
+        kgLb,
+        sellBuy,
+        prepaidCollect,
+        salesRegion,
+        dealCode,
+        reference,
+        priceClass,
+        serviceLevel,
+        flightGroup,
+        uldType,
+        shcAddon,
+        priceTemplate,
+        allotPrice,
+        weekday,
+        premium,
+        shipper,
+        agent,
+        remarksInt,
+        remarksExt,
+        minAmount,
+        n,
+        q45,
+        q100,
+        q300,
+        q500,
+        q1000,
+        q3000,
+        allIn
+    });
 
     newRate.save();
+    res.send();
 })
 
 router.route("/rates").get((req, res) => {
     Rate.find()
         .then(foundRates => res.json(foundRates))
 })
-
 
 module.exports = router;

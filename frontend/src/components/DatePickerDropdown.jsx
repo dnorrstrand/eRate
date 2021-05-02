@@ -12,7 +12,8 @@ function DatePickerDropdown(props) {
     return (
         <DatePicker
             selected={value}
-            onChange={date => setSelectedValue(date), (selectedValue) => props.onChange(selectedValue, props.name)}
+            onChange={date => setSelectedValue(date), (selectedValue) => props.onChange(selectedValue, props.name)
+            }
             peekNextMonth
             showMonthDropdown
             showYearDropdown

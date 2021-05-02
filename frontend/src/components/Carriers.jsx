@@ -6,7 +6,9 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
-function Carriers() {
+function Carriers(props) {
+
+    const { rowCallback, ...rest } = props;
 
     const [carriers, setCarriers] = useState([{
         _id: "",
@@ -41,48 +43,30 @@ function Carriers() {
         text: 'Prefix'
     }];
     const { SearchBar } = Search;
+    const selectRow = {
+        mode: 'radio',
+        clickToSelect: true,
+        style: { backgroundColor: '#c8e6c9' },
+        onSelect: function (row) {
+            let selectedRow = row.carrierCode;
+            return rowCallback(selectedRow);
+        }
+    }
 
     return (
-        <Container>
-            <ToolkitProvider
-                key="_id" keyField='_id' data={records} columns={columns}
-                search
-            >
+        <Container {...rest}>
+            <ToolkitProvider keyField="_id" data={records} columns={columns} search>
                 {
-                    props => (
+                    rest => (
                         <div>
                             <h3>Input something at below input field:</h3>
-                            <SearchBar {...props.searchProps} />
-                            <hr />
-                            <BootstrapTable {...props.baseProps} pagination={paginationFactory()} />
-
+                            <SearchBar {...rest.searchProps} />
+                            <BootstrapTable {...rest.baseProps} pagination={paginationFactory()} selectRow={selectRow} striped hover condensed bordered={false} />
                         </div>
                     )
                 }
             </ToolkitProvider>
-
-            {/* <h1>Carriers</h1>
-            <Table striped borderless hover size="sm">
-                <thead>
-                    <tr>
-                        <th>IATA Code</th>
-                        <th>Long Code</th>
-                        <th>Name</th>
-                        <th>Prefix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {carriers.map(carrier =>
-                        <tr key={carrier._id}>
-                            <td>{carrier.carrierCode}</td>
-                            <td>{carrier.carrierLongCode}</td>
-                            <td>{carrier.carrierName}</td>
-                            <td>{carrier.carrierPrefix}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </Table>*/}
-        </Container>
+        </Container >
     )
 }
 export default Carriers;

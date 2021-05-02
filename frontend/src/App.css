@@ -1,0 +1,14 @@
+body {
+    background-color: #E8ECEF;
+}
+
+.img-home {
+    left: 0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    bottom: 0;
+    position: absolute;
+}

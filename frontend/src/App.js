@@ -11,20 +11,22 @@ import CreateNotes from "./components/CreateNote";
 import CreateRates from "./components/CreateRate";
 import CreateAirports from "./components/CreateAirport";
 import CreateCarriers from "./components/CreateCarrier";
+import './App.css';
 
 function App() {
     return (
 
         <Router>
-            <Navibar />
 
             <Route path="/" exact>
+                <Navibar />
                 <Home />
             </Route>
             <Route path="/notes">
                 <Notes />
             </Route>
             <Route path="/rates">
+                <Navibar />
                 <Rates />
             </Route>
             <Route path="/airports">
