@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Filtergroup from "./Filtergroup";
@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 function Filterbar(props) {
 
-    const [counts, setCounts] = useState(1);
+    const [counts, setCounts] = useState(0);
 
     function addFilter() {
         setCounts(counts + 1);
@@ -31,7 +31,7 @@ function Filterbar(props) {
                         <Filtergroup counts={counts} rates={props.rates} />
                     </Card.Text>
                     <Card.Subtitle className="mb-2 text-muted">
-                        <Button size="sm" block href="#">Apply filter(s)</Button>
+                        <Button size="sm" variant="outline-primary" block href="#">Apply filter(s)</Button>
                     </Card.Subtitle>
                 </Card.Body>
             </Card>

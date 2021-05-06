@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import InputField from "./InputField";
-import InputGroup from 'react-bootstrap/InputGroup';
 import DatePickerDropdown from "./DatePickerDropdown";
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
@@ -204,7 +203,7 @@ function CreateRates() {
                             <Form.Label htmlFor="rate-contact">Contact</Form.Label>
                             <Form.Control onChange={handleChange} className="form-control mb-3" name="contact" value={input.contact} id="rate-contact" />
                         </Col>
-                        <Col xs={2} lg={2} md={2} sm={4} xs={8}>
+                        <Col xs={2} lg={2} md={2} sm={4}>
                             <Form.Label htmlFor="rate-revised-date" style={{ display: "block" }}>Revised Date</Form.Label>
                             <DatePickerDropdown onChange={handleSelection} name="revisedDate" value={input.revisedDate} id="rate-revised-date" />
                         </Col>
@@ -379,7 +378,7 @@ function CreateRates() {
                 </div >
                 <Row className="form-group">
                     <Col>
-                        <Button onClick={handleClick} style={{}} type="submit" variant="outline-primary" size="sm" block >ADD RATE</Button>
+                        <Button onClick={handleClick} type="submit" variant="outline-primary" size="sm" block >Add Rate</Button>
                     </Col>
                 </Row>
             </Form >
